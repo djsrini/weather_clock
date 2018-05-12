@@ -18,22 +18,27 @@ function countryTime(offset) {
 }
 
 //Temperature Function
-function getTemp(city){
+function getTemp(city,code){
     var request = new XMLHttpRequest();
-    let apiKey = '05cdb164b02a324453f48bae55a6b8b0';
+    let apiKey = '7c40fe2f7caa73062387a705a17b6205';
     let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`
     request.open('GET', url, true);
     request.onload = function () {
       var data = JSON.parse(request.response);
       var weather = {};
  	  weather.temp = data.main.temp;
-      update(weather);
+      weather.icon = data.weather[0].icon;
+      update(weather,code);
     }
     request.send();
 }
 
-function update(weather){
-    document.getElementById('dxbT').innerHTML = weather.temp;
+function update(weather,code){
+    document.getElementById(code).innerHTML = Math.floor(weather.temp).toString() + " °C";
+
+    var iconStr = "/icon/"+weather.icon+".png";
+    console.log(code+"i");
+    document.getElementById(code).src = iconStr;
 }
 
 
@@ -50,16 +55,21 @@ setInterval(function()
   document.getElementById('osn').innerHTML = countryTime('2');
   document.getElementById('jed').innerHTML = countryTime('3');
   document.getElementById('wel').innerHTML = countryTime('12');
-
-   getTemp("dubai");
-  document.getElementById('indT').innerHTML = getTemp("dubai");
-  document.getElementById('pakT').innerHTML = getTemp("dubai");
-  document.getElementById('sriT').innerHTML = getTemp("dubai");
-  document.getElementById('kwiT').innerHTML = countryTime('3');
-  document.getElementById('melT').innerHTML = countryTime('10');
-  document.getElementById('hngT').innerHTML = countryTime('8');
-  document.getElementById('bngT').innerHTML = countryTime('6');
-  document.getElementById('osnT').innerHTML = countryTime('2');
-  document.getElementById('jedT').innerHTML = countryTime('3');
-  document.getElementById('welT').innerHTML = countryTime('12');
+  document.getElementById("dxbTi").src = "icon/01n.png";
+  document.getElementById("dxbTi").height = "70";
+  document.getElementById("dxbTi").width = "70";
 }, 1000);
+
+setInterval(function(){
+    getTemp("dubai","dxbTi");
+    getTemp("delhi","indTi");
+    getTemp("karachi","pakT");
+    getTemp("colombo,lk","sriT");
+    getTemp("Al Aḩmadī","kwiT");
+    getTemp("Melbourne,au","melT");
+    getTemp("hong kong,cn","hngT");
+    getTemp("Chittagong,BD","bngT");
+    getTemp("Osnabrück,de","osnT");
+    getTemp("jeddah,sa","jedT");
+    getTemp("wellington,nz","welT");
+},180);

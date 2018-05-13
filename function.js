@@ -26,8 +26,10 @@ function getTemp(city,code){
     request.onload = function () {
       var data = JSON.parse(request.response);
       var weather = {};
- 	  weather.temp = data.main.temp;
-      weather.icon = data.weather[0].icon;
+ 	    //weather.temp = data.main.temp;
+      //weather.icon = data.weather[0].icon;
+ 	    weather.temp = 40;
+      // weather.icon = "01d";
       update(weather,code);
     }
     request.send();
@@ -36,9 +38,9 @@ function getTemp(city,code){
 function update(weather,code){
     document.getElementById(code).innerHTML = Math.floor(weather.temp).toString() + " °C";
 
-    var iconStr = "/icon/"+weather.icon+".png";
+    var iconStr = "/icon/"+weather.icon.toString()+".png";
     console.log(code+"i");
-    document.getElementById(code).src = iconStr;
+    document.getElementById(code+"i").src = iconStr;
 }
 
 
@@ -72,4 +74,4 @@ setInterval(function(){
     getTemp("Osnabrück,de","osnT");
     getTemp("jeddah,sa","jedT");
     getTemp("wellington,nz","welT");
-},180);
+},5000);

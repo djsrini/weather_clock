@@ -20,15 +20,15 @@ function countryTime(offset) {
 //Temperature Function
 function getTemp(city,code){
     var request = new XMLHttpRequest();
-    let apiKey = '7c40fe2f7caa73062387a705a17b6205';
+    let apiKey = 'acacfa99a49d05c9cb2a4d2625d57d10';
     let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`
     request.open('GET', url, true);
     request.onload = function () {
       var data = JSON.parse(request.response);
       var weather = {};
- 	    //weather.temp = data.main.temp;
+ 	    weather.temp = data.main.temp;
       //weather.icon = data.weather[0].icon;
- 	    weather.temp = 40;
+ 	    // weather.temp = 40;
       // weather.icon = "01d";
       update(weather,code);
     }
@@ -37,10 +37,9 @@ function getTemp(city,code){
 
 function update(weather,code){
     document.getElementById(code).innerHTML = Math.floor(weather.temp).toString() + " °C";
-
-    var iconStr = "/icon/"+weather.icon.toString()+".png";
-    console.log(code+"i");
-    document.getElementById(code+"i").src = iconStr;
+    // var iconStr = "/icon/"+weather.icon.toString()+".png";
+    // console.log(code+"i");
+    // document.getElementById(code+"i").src = iconStr;
 }
 
 
@@ -57,12 +56,13 @@ setInterval(function()
   document.getElementById('osn').innerHTML = countryTime('2');
   document.getElementById('jed').innerHTML = countryTime('3');
   document.getElementById('wel').innerHTML = countryTime('12');
-  document.getElementById("dxbTi").src = "icon/01n.png";
-  document.getElementById("dxbTi").height = "70";
-  document.getElementById("dxbTi").width = "70";
+  // document.getElementById("dxbTi").src = "icon/01n.png";
+  // document.getElementById("dxbTi").height = "70";
+  // document.getElementById("dxbTi").width = "70";
 }, 1000);
 
-setInterval(function(){
+weatherLoad();
+function weatherLoad() {
     getTemp("dubai","dxbTi");
     getTemp("delhi","indTi");
     getTemp("karachi","pakT");
@@ -74,4 +74,29 @@ setInterval(function(){
     getTemp("Osnabrück,de","osnT");
     getTemp("jeddah,sa","jedT");
     getTemp("wellington,nz","welT");
-},5000);
+}
+
+setInterval(function(){
+    getTemp("dubai","dxbTi");
+    setTimeout(myFunction, 60000);
+    getTemp("delhi","indTi");
+    setTimeout(myFunction, 60000);
+    getTemp("karachi","pakT");
+    setTimeout(myFunction, 60000);
+    getTemp("colombo,lk","sriT");
+    setTimeout(myFunction, 60000);
+    getTemp("Al Aḩmadī","kwiT");
+    setTimeout(myFunction, 60000);
+    getTemp("Melbourne,au","melT");
+    setTimeout(myFunction, 60000);
+    getTemp("hong kong,cn","hngT");
+    setTimeout(myFunction, 60000);
+    getTemp("Chittagong,BD","bngT");
+    setTimeout(myFunction, 60000);
+    getTemp("Osnabrück,de","osnT");
+    setTimeout(myFunction, 60000);
+    getTemp("jeddah,sa","jedT");
+    setTimeout(myFunction, 60000);
+    getTemp("wellington,nz","welT");
+    setTimeout(myFunction, 60000);
+},900000);

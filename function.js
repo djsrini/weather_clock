@@ -17,6 +17,19 @@ function countryTime(offset) {
   return strTime;
 }
 
+//Get Date
+function getDate() {
+  var da = new Date();
+  var date = da.getDate();
+  var month = da.getMonth();
+
+  const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"];
+
+  var year = da.getFullYear();
+  return date.toString()+"-"+monthNames[month]+"-"+ year.toString();
+}
+
 //Temperature Function
 function getTemp(city,code){
     var request = new XMLHttpRequest();
@@ -56,6 +69,7 @@ setInterval(function()
   document.getElementById('osn').innerHTML = countryTime('2');
   document.getElementById('jed').innerHTML = countryTime('3');
   document.getElementById('wel').innerHTML = countryTime('12');
+  document.getElementById('dat').innerHTML = getDate();
   // document.getElementById("dxbTi").src = "icon/01n.png";
   // document.getElementById("dxbTi").height = "70";
   // document.getElementById("dxbTi").width = "70";
@@ -63,8 +77,8 @@ setInterval(function()
 
 weatherLoad();
 function weatherLoad() {
-    getTemp("dubai","dxbTi");
-    getTemp("delhi","indTi");
+    getTemp("dubai","dxbT");
+    getTemp("delhi","indT");
     getTemp("karachi","pakT");
     getTemp("colombo,lk","sriT");
     getTemp("Al Aḩmadī","kwiT");
@@ -77,9 +91,9 @@ function weatherLoad() {
 }
 
 setInterval(function(){
-    getTemp("dubai","dxbTi");
+    getTemp("dubai","dxbT");
     setTimeout(myFunction, 60000);
-    getTemp("delhi","indTi");
+    getTemp("delhi","indT");
     setTimeout(myFunction, 60000);
     getTemp("karachi","pakT");
     setTimeout(myFunction, 60000);

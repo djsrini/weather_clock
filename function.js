@@ -69,6 +69,7 @@ setInterval(function()
   document.getElementById('osn').innerHTML = countryTime('2');
   document.getElementById('jed').innerHTML = countryTime('3');
   document.getElementById('wel').innerHTML = countryTime('12');
+  document.getElementById('mia').innerHTML = countryTime('-4');
   document.getElementById('dat').innerHTML = getDate();
   // document.getElementById("dxbTi").src = "icon/01n.png";
   // document.getElementById("dxbTi").height = "70";
@@ -88,29 +89,20 @@ function weatherLoad() {
     getTemp("Osnabrück,de","osnT");
     getTemp("jeddah,sa","jedT");
     getTemp("wellington,nz","welT");
+    getTemp("Miami,US","miaT");
 }
 
 setInterval(function(){
     getTemp("dubai","dxbT");
-    setTimeout(myFunction, 60000);
     getTemp("delhi","indT");
-    setTimeout(myFunction, 60000);
     getTemp("karachi","pakT");
-    setTimeout(myFunction, 60000);
     getTemp("colombo,lk","sriT");
-    setTimeout(myFunction, 60000);
     getTemp("Al Aḩmadī","kwiT");
-    setTimeout(myFunction, 60000);
     getTemp("Melbourne,au","melT");
-    setTimeout(myFunction, 60000);
     getTemp("hong kong,cn","hngT");
-    setTimeout(myFunction, 60000);
     getTemp("Chittagong,BD","bngT");
-    setTimeout(myFunction, 60000);
     getTemp("Osnabrück,de","osnT");
-    setTimeout(myFunction, 60000);
     getTemp("jeddah,sa","jedT");
-    setTimeout(myFunction, 60000);
     getTemp("wellington,nz","welT");
-    setTimeout(myFunction, 60000);
+    getTemp("Miami,US","miaT");
 },900000);
